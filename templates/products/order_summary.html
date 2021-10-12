@@ -1,0 +1,65 @@
+{% extends 'products/base.html' %}
+{% load humanize %}
+{% block title %} Order Summary {% endblock title %}
+
+
+{% block content %}
+
+<main class="py-5">
+
+
+      {% if orders %}
+        <div class="container shadow p-5 mb-3 bg-white rounded">
+          <div class="table-responsive text-nowrap">
+              <h2>Order Summary</h2>
+              <table class="table">
+                  <thead>
+                  <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Product</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Discount</th>
+                      <th scope="col">Total Price</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+
+                      {% for order_item in orders.items.all %}
+                          <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td><a href="{{ order_item.item.get_absolute_url }}">{{ order_item.item.product_name }}</a></td>
+                            <td>
+
+                              <a href="{{ order_item.item.remove_single_item_from_cart }}"><i class="bi bi-dash"></i></a>
+                              {{ order_item.quantity }}
+                              <a href="{{ order_item.item.get_add_to_cart }}"><i class="bi bi-plus"></i></a>
+
+
+                            </td>
+                            <td>{{ order_item.item.price|intcomma }}</td>
+                            <td>{{ order_item.item.discount_price|intcomma }}</td>
+                            <td>{{ order_item.get_total_price|intcomma }}</td>
+                          </tr>
+                          {% endfor %}
+                  </tbody>
+
+              </table>
+
+          </div>
+        </div>
+      {% else %}
+
+        <div class="container offset-2">
+          <h3 class="mb-5">You don't have an active order </h3>
+          <a class="btn btn-outline-success" href="{% url 'products:home' %}">Continue Shopping</a>
+        </div>
+
+
+      {% endif %}
+
+
+</main>
+
+{% endblock %}

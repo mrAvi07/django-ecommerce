@@ -1,0 +1,24 @@
+{% extends 'products/base.html' %}
+
+
+{% block title %} Payment {% endblock title %}
+
+
+{% block content %}
+
+<form action="https://www.example.com/payment/success/" method="POST">
+    <script    
+        src="https://checkout.razorpay.com/v1/checkout.js"    
+        data-key="rzp_test_aQOg2ijKM2UsIq"     
+        data-amount="amount"     
+        data-currency="INR"   
+        data-order_id="{{ razorpay_order_id }}"
+        data-buttontext="Buy"    
+        data-name="{{ product.product_name }}"    
+        data-description="Nice product"    
+        data-image="{{ product.img.url }}"      
+        data-theme.color="#F37254">
+    </script>
+    <input type="hidden" custom="Hidden Element" name="hidden"></form>
+
+{% endblock content %}
