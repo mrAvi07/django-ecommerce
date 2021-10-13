@@ -8,22 +8,34 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 from .forms import ContactForm
 from .helper import ContactFormView
+from django.db.models import Q
+
+
+def get_products(name=None):
+    if name:
+        products = Product.objects.filter( Q(product_name__icontains=name) | Q(category__category_name__icontains=name))
+    
+    else:
+        products = Product.objects.filter(available=True)
+
+    return products
 
 
 
-def product_list(request, category_slug=None):
-    category = None
+
+def product_list(request):
     categories = Category.objects.all()
-    products = Product.objects.filter(available=True)
 
-    if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
-        products = products.filter(category=category)
+    name = request.GET.get('name')
+
+    if name:
+        products = get_products(name)
+    else:
+        products = get_products()
 
     context = {
         'categories': categories,
         'products': products,
-        'category': category,
     }
     return render(request, "products/home.html", context)
 
@@ -146,6 +158,7 @@ def remove_single_item_from_cart(request, slug):
 
 class ContactView(ContactFormView):
     form_class = ContactForm
+    template_name = "products/contact_form.html"
 
 
 contact = ContactView.as_view()

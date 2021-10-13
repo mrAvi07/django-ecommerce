@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.conf import settings
 
 
+
 class Category(models.Model):
     category_name = models.CharField(max_length = 200)
     slug = models.SlugField(null=True, blank=True)
