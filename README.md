@@ -9,6 +9,7 @@
     <li>Django</li>
     <li>Bootstrap</li>
     <li>JS</li>
+    <li>Redis</li>
   </ul>
   
   
