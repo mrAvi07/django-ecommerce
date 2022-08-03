@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'products',
-    'payments',
+    #'payments',
     
     #third-party packages
     'allauth',
@@ -155,7 +155,7 @@ LOGIN_REDIRECT_URL = '/'
 
 
 #REDIS CACHE backends
-
+"""
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -167,7 +167,7 @@ CACHES = {
     }
 }
 CACHE_TTL = 60 * 11
-
+"""
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -177,10 +177,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #Razorpay setup
 #Razorpay secret and key 
 load_dotenv()
-
+"""
 CLIENT_KEY_ID = os.getenv('CLIENT_KEY_ID')
 CLIENT_KEY_SECRET = os.getenv('CLIENT_KEY_SECRET')
-
+"""
 
 #Email Backend
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

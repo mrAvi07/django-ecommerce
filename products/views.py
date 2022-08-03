@@ -89,8 +89,6 @@ def add_to_cart(request, slug):
             order.items.add(order_item)
             return redirect("products:order-summary")
     else:
-
-
         ordered_date = timezone.now()
         order = Order.objects.create(
             user=request.user,

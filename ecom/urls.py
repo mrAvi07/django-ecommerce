@@ -9,12 +9,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include('products.urls')),
-    path('', include('payments.urls'))
+    #path('', include('payments.urls'))
 ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
 
 
-
+"""
 if settings.DEBUG == True:
     urlpatterns += [
         path('__debug__', include(debug_toolbar.urls))
     ]
+"""
