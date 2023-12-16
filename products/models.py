@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
 from django.conf import settings
-
+from ckeditor.fields import RichTextField
 
 
 class Category(models.Model):
@@ -31,6 +31,7 @@ class Product(models.Model):
     discount_price = models.FloatField(null=True, blank=True)
     slug = models.SlugField(blank=True, null=True)
     description = models.TextField()
+    body = RichTextField(null=True, blank=True)
     available = models.BooleanField(default=True)
 
     def __str__(self):
