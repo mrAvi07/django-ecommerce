@@ -12,3 +12,4 @@ PyJWT==2.8.0
 python-decouple==3.8
 python-dotenv==1.0.0
 requests==2.31.0
+django-ckeditor==6.1.0
